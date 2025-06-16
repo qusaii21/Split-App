@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Add Person</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">Dashboard</a>
+      <a href="/add-expense">Add Expense</a>
+      <a href="/add-person">Add Person</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Add New Person</h1>
+    <form id="person-form">
+      <div>
+        <label>Name:<br>
+          <input type="text" id="name" required>
+        </label>
+      </div>
+      <button type="submit">Add</button>
+    </form>
+    <p id="msg"></p>
+  </main>
+
+  <script src="/js/add-person.js"></script>
+</body>
+</html>

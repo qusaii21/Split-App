@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Expense</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <a href="/">Dashboard</a>
+      <a href="/add-expense">Add Expense</a>
+      <a href="/add-person">Add Person</a>
+    </nav>
+  </header>
+  <main>
+    <h1>Add New Expense</h1>
+    <form id="expense-form">
+      <div>
+        <label>Description:<br>
+          <input type="text" id="description" required>
+        </label>
+      </div>
+      <div>
+        <label>Amount:<br>
+          <input type="number" id="amount" step="0.01" required>
+        </label>
+      </div>
+      <div>
+        <label>Paid By:<br>
+          <input type="text" id="paidBy" required>
+        </label>
+      </div>
+      <div>
+        <label>Date:<br>
+          <input type="date" id="date" required>
+        </label>
+      </div>
+      <div>
+        <label>Category:<br>
+          <select id="category" required>
+            <option value="">-- Select --</option>
+            <option>FOOD</option>
+            <option>TRAVEL</option>
+            <option>UTILITIES</option>
+            <option>ENTERTAINMENT</option>
+            <option>OTHER</option>
+          </select>
+        </label>
+      </div>
+      <div>
+        <label>Share Type:<br>
+          <select id="shareType">
+            <option value="EQUAL">Equal</option>
+            <option value="PERCENTAGE">Percentage</option>
+            <option value="EXACT">Exact</option>
+          </select>
+        </label>
+      </div>
+      <!-- for simplicity we skip participants details in this form -->
+      <button type="submit">Save Expense</button>
+    </form>
+    <p id="msg"></p>
+  </main>
+
+  <script src="/js/add-expense.js"></script>
+</body>
+</html>
