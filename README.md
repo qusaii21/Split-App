@@ -25,6 +25,10 @@ A **Spring Boot** (Java) application for splitting group expenses among particip
    * Collection Variables
    * Running the Collection
 7. [Edge Cases & Validation](#edge-cases--validation)
+8. [Deployment](#deployment)
+9. [Contributing](#contributing)
+10. [License](#license)
+
 ---
 
 ## Features
@@ -67,7 +71,13 @@ server:
   `mongodb+srv://<user>:<pass>@<cluster>.mongodb.net/splitapp?retryWrites=true&w=majority`
 * In production (e.g. Railway), the `MONGODB_URI` will be provided as an environment variable.
 
+### 2. MongoDB Connection
 
+1. **Atlas (cloud)**:
+
+   * Create a free cluster
+   * Add a database user and whitelist your IP
+   * Copy the provided connection string
 2. **Local**: install and start MongoDB on `localhost:27017`
 
 ---
@@ -76,7 +86,8 @@ server:
 
 ```bash
 # Clone the repo
-git clone https://github.com/qusaii21/splitapp.git
+git clone https://github.com/qusaii21/splitapp-backend.git
+cd splitapp-backend
 
 # Configure MongoDB URI in application.yml
 # Build and run
@@ -115,6 +126,24 @@ The server will start on `http://localhost:8080`.
 | GET    | `/api/people`      | List all unique people             |
 | GET    | `/api/balances`    | Calculate net balances per person  |
 | GET    | `/api/settlements` | Generate optimized settlement list |
+
+#### Settlement Calculation Logic
+
+When you call **`GET /api/settlements`**, the application runs the following algorithm to minimize transactions:
+
+1. **Compute net balances** for each person: total paid minus total share owed.
+2. **Partition** participants into creditors (positive balance) and debtors (negative balance).
+3. **Greedy matching**:
+
+   * While creditors and debtors remain:
+
+     * Pick the debtor with the largest debt and the creditor with the largest credit.
+     * Create a settlement transaction for the minimum of the two amounts.
+     * Subtract that amount from both balances.
+     * Remove any person whose balance reaches zero from further matching.
+4. **Return** a list of `SettlementDTO` records indicating `from`, `to`, and `amount`.
+
+This ensures each repayment brings balances closer to zero in as few transfers as possible.
 
 ### Health Check
 
@@ -168,5 +197,11 @@ A pre-built Postman collection (`SplitApp.postman_collection.json`) is provided.
 * Empty `description` or missing `paidBy`, `date`, or `category` → HTTP 400
 * Update/Delete non-existent ID → HTTP 404 Not Found
 * GET balances with no expenses → returns empty list
+
+---
+
+
+
+
 
 
