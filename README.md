@@ -76,7 +76,7 @@ server:
 
 ```bash
 # Clone the repo
-git clone https://github.com/<your-org>/splitapp.git
+git clone https://github.com/qusaii21/splitapp.git
 
 # Configure MongoDB URI in application.yml
 # Build and run

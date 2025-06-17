@@ -125,9 +125,9 @@ public class ExpenseService {
         return people;
     }
 
-    // --- Enhanced Analytics ---
+   
 
-    // --- Enhanced Analytics ---
+    
 
 /**
  * Monthly spending summary by category
@@ -135,9 +135,9 @@ public class ExpenseService {
 public Map<String, Double> getMonthlySpendingSummary(int year, int month) {
     YearMonth target = YearMonth.of(year, month);
     return expenseRepository.findAll().stream()
-        .filter(e -> e.getDate() != null                              // ensure date exists
+        .filter(e -> e.getDate() != null                              
                   && YearMonth.from(e.getDate()).equals(target)
-                  && e.getCategory() != null)                         // skip null categories
+                  && e.getCategory() != null)                         
         .collect(Collectors.groupingBy(
             e -> e.getCategory().name(),
             Collectors.summingDouble(Expense::getAmount)
@@ -149,7 +149,7 @@ public Map<String, Double> getMonthlySpendingSummary(int year, int month) {
  */
 public List<String> getTopNCategories(int n) {
     Map<String, Double> summary = expenseRepository.findAll().stream()
-        .filter(e -> e.getCategory() != null)                         // skip null categories
+        .filter(e -> e.getCategory() != null)                         
         .collect(Collectors.groupingBy(
             e -> e.getCategory().name(),
             Collectors.summingDouble(Expense::getAmount)
@@ -166,9 +166,6 @@ public List<String> getTopNCategories(int n) {
 
  
 
-    // ----------------------------
-    // Private helpers and validators
-    // ----------------------------
 
     private void validateExpenseDTO(ExpenseDTO dto) {
         if (dto.getAmount() == null || dto.getAmount() <= 0)
@@ -200,7 +197,7 @@ public List<String> getTopNCategories(int n) {
         return calculateShares(participants, dto.getAmount(), dto.getShareType());
     }
 
-    // … inside ExpenseService …
+    
 
     private List<ParticipantShare> calculateShares(List<ParticipantShare> participants,
             Double totalAmount,
@@ -208,7 +205,7 @@ public List<String> getTopNCategories(int n) {
         List<ParticipantShare> result = new ArrayList<>();
         switch (type) {
             case EQUAL:
-                // compute once and keep it final
+            
                 final double equalShare = round(totalAmount / participants.size());
                 participants.forEach(p -> result.add(new ParticipantShare(p.getName(), equalShare)));
                 break;
@@ -245,7 +242,7 @@ public List<String> getTopNCategories(int n) {
             throw new ValidationException("Exact shares must sum to total amount");
     }
 
-    /** Round to 2 decimal places */
+    
     private double round(double value) {
         return BigDecimal.valueOf(value)
                 .setScale(2, RoundingMode.HALF_UP)

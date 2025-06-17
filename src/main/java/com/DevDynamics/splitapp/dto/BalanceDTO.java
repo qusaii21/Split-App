@@ -17,7 +17,7 @@ public class BalanceDTO {
         this.totalOwed = totalOwed;
     }
     
-    // Getters and Setters
+    
     public String getPerson() {
         return person;
     }
