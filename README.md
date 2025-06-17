@@ -200,6 +200,14 @@ A pre-built Postman collection (`SplitApp.postman_collection.json`) is provided.
 
 ---
 
+##Demo
+
+
+
+https://github.com/user-attachments/assets/edeb6d3b-d34a-4dda-bbbf-0b67f05b6d8e
+
+
+
 
 
 
