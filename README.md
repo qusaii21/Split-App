@@ -165,7 +165,7 @@ A pre-built Postman collection (`SplitApp.postman_collection.json`) is provided.
 ### Import Instructions
 
 1. Open Postman → **Import** → **File** → select `SplitApp.postman_collection.json`.
-2. Set the environment variable **`baseUrl`** to your deployed or local API URL (e.g., `http://localhost:8080`).
+2. Set the environment variable **`baseUrl`** to your deployed or local API URL (e.g., `split-app-production-2dbd.up.railway.app`).
 
 ### Collection Variables
 
