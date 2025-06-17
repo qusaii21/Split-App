@@ -303,7 +303,7 @@
     }
   ],
   "variable": [
-    { "key": "baseUrl",    "value": "http://localhost:8080", "type": "string" },
+    { "key": "baseUrl",    "value": "split-app-production-2dbd.up.railway.app", "type": "string" },
     { "key": "petrolId",   "value": "",                         "type": "string" },
     { "key": "pizzaId",    "value": "",                         "type": "string" },
     { "key": "category",   "value": "FOOD",                     "type": "string" },
